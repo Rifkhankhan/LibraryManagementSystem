@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LibrarianController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\MemberController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +43,16 @@ Route::prefix('librarian')->group(function(){
     Route::post('createbook',[LibrarianController::class,'createbook'])->name('librarian.createbook');
 });
 Route::get('logout',[LibrarianController::class,'logout'])->name('logout');
+
+
+Route::prefix('staff')->group(function(){
+    Route::get('/',[StaffController::class,'index'])->name('staff.dashboard');
+    Route::get('/showbooks',[StaffController::class,'showbooks'])->name('staff.showbooks');
+    Route::get('/resetpasswordpage',[StaffController::class,'resetpasswordpage'])->name('staff.resetpasswordpage');
+    Route::get('/updatepassword',[StaffController::class,'updatepassword'])->name('staff.updatepassword');
+});
+
+Route::prefix('member')->group(function(){
+    Route::get('/',[MemberController::class,'index'])->name('member.dashboard');
+    Route::get('/showbooks',[MemberController::class,'showbooks'])->name('member.showbooks');
+});
